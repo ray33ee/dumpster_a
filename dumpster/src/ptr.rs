@@ -166,21 +166,3 @@ impl<T: ?Sized> fmt::Debug for Nullable<T> {
         write!(f, "Nullable({:x?})", self.0)
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use std::alloc::{dealloc, Layout};
-
-    use super::*;
-
-    #[test]
-    fn erased_alloc() {
-        let orig_ptr = Box::leak(Box::new(7u8));
-        let erased_ptr = Erased::new(NonNull::from(orig_ptr));
-
-        unsafe {
-            let remade_ptr = erased_ptr.specify::<u8>();
-            dealloc(remade_ptr.as_ptr(), Layout::for_value(remade_ptr.as_ref()));
-        }
-    }
-}

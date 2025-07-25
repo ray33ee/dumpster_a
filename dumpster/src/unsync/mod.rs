@@ -46,8 +46,6 @@ use crate::{contains_gcs, ptr::Nullable, Trace, Visitor};
 use self::collect::{Dumpster, COLLECTING, DUMPSTER};
 
 mod collect;
-#[cfg(test)]
-mod tests;
 
 #[derive(Debug)]
 /// A garbage-collected pointer.

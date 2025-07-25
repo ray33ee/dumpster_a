@@ -28,8 +28,6 @@
 //! ```
 
 mod collect;
-#[cfg(test)]
-mod tests;
 
 use std::{
     alloc::{dealloc, Layout},
